@@ -1,0 +1,8 @@
+---
+- name: Primer playbook
+  hosts: webserver01
+  remote_user: aminaya
+  become: True
+  tasks:
+    - name: Copias /etc/hosts
+      copy: src=/etc/hosts dest=/home/aminaya
