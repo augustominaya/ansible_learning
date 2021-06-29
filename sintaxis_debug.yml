@@ -26,6 +26,7 @@
     - debug: var=milista
     - debug: var=milista_larga
     - debug: var=midiccionario
+    - debug: var=midiccionario.web
     - debug: var=mi_dic_largo
     - debug: var=mitexto
     - debug: var=mitexto_largo
