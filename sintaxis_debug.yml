@@ -1,0 +1,31 @@
+- name: Crear fichero usando sintaxis
+  hosts: localhost
+  connection: local
+  vars:
+    - miip: "192.168.1.1"
+    - milista: ["apache2","mariadb","php5"]
+    - milista_larga:
+      - apache2
+      - mariadb
+      - php5
+    - midiccionario: {web: "apache2", bbdd: "mariadb", script: "php5" }
+    - mi_dic_largo:
+      - web: apache2
+      - bbdd: mariadb
+      - script: php5
+    - mitexto: |
+         primera linea
+         segunda linea
+         tercera linea
+    - mitexto_largo: >
+         inicia las lineas
+         continuacion de la linea anterior
+         finalizar las linea
+  tasks:
+    - debug: var=miip
+    - debug: var=milista
+    - debug: var=milista_larga
+    - debug: var=midiccionario
+    - debug: var=mi_dic_largo
+    - debug: var=mitexto
+    - debug: var=mitexto_largo
