@@ -7,3 +7,5 @@
     - name: Instalar vim
       apt: name=vim state=latest
     - include: includes/instalar_apache2.yml
+- name: Segundo play
+  import_playbook: includes/segundo_play.yml
