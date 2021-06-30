@@ -3,4 +3,7 @@
   remote_user: aminaya
   become: true
   roles:
-    - apache2
+  # sustituimos el nombre del roll apache2
+  # por una sobreescritura de la lista de usuarios
+  #  - apache2
+    - { role: apache2, lista_usuarios: ["usuario1","root1"]}
