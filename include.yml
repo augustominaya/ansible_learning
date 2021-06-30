@@ -1,0 +1,9 @@
+---
+- name: Primer play con include
+  hosts: webserver01
+  remote_user: aminaya
+  become: true
+  tasks:
+    - name: Instalar vim
+      apt: name=vim state=latest
+    - include: includes/instalar_apache2.yml
