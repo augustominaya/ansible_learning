@@ -1,12 +1,19 @@
 - name: instalar y configurar apache 2
   #hosts: webserver01:webserver02:webserver03
   #utilizamos el webserver01 -02 para probar bucle he instalar diversos items
-  hosts: webserver01,webserver02 #servidors de debian
+  hosts: webserver01,webserver02
   remote_user: aminaya
   become: true
   roles:
   # sustituimos el nombre del roll apache2
   # por una sobreescritura de la lista de usuarios
   #  - apache2
-    - { role: apache2, lista_usuarios: ["usuario1","root1"], when: ansible_distribution == "ubuntu" }
+    - { role: apache2 }
     #- { role: httpd, lista_usuarios: ["usuario1","root1"], when: ansible_distribution == "CentOS" }
+
+  # tasks:
+  # - name: Creando usuario fuera del roll
+  #   user: name={{ item.nombre }} groups={{ item.group }}
+  #   with_items:
+  #     - { nombre: usuariouno, group: www-data }
+  #     - { nombre: usuariodos, group: www-data }
