@@ -11,3 +11,16 @@
   # en ves de utilizar copy utilizamos template para ir automaticamente
 - name: copiar fichero index.html
   template: src=index.html.j2 dest=/var/www/html/index.html
+
+# vieja version
+# - name: Instalar paquetes2
+#   apt: name={{ item }} state=latest
+#   with_items:
+#     - mysql-server
+#     - phpmyadmin
+#     - php7
+
+- name: Instalar paquetes3
+  apt:
+    name: ['mysql-server', 'phpmyadmin', 'php7']
+    state: latest

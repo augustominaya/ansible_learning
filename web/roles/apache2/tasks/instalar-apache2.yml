@@ -1,4 +1,4 @@
-- name: Instalar httpd
+- name: Instalar apache2
   apt: name=apache2 state=latest
 
 - name: Iniciar y habilitar el servicio

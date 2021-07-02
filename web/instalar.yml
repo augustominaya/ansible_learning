@@ -1,5 +1,7 @@
 - name: instalar y configurar apache 2
-  hosts: webserver01:webserver02:webserver03
+  #hosts: webserver01:webserver02:webserver03
+  #utilizamos el webserver01 -02 para probar bucle he instalar diversos items
+  hosts: webserver01,webserver02 #servidors de debian
   remote_user: aminaya
   become: true
   roles:
@@ -7,4 +9,4 @@
   # por una sobreescritura de la lista de usuarios
   #  - apache2
     - { role: apache2, lista_usuarios: ["usuario1","root1"], when: ansible_distribution == "ubuntu" }
-    - { role: httpd, lista_usuarios: ["usuario1","root1"], when: ansible_distribution == "CentOS" }
+    #- { role: httpd, lista_usuarios: ["usuario1","root1"], when: ansible_distribution == "CentOS" }
