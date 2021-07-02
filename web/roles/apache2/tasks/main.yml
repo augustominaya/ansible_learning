@@ -24,7 +24,7 @@
 - name: Instalar paquetes3
   apt:
 #    name: ['mysql-server', 'phpmyadmin', 'php7.4']
-    name: {{ lista_paquetes }}
+    name: "{{ lista_paquetes }}"
     state: latest
 
 # - name: creamos usuarios necesarios
