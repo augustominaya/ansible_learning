@@ -1,0 +1,13 @@
+{# Comentario, clase de templates #}
+hola al servidor {{ ansible_fqdn }}
+
+#colocamos un condicional if
+
+{% if ansible_distribution == "Ubuntu" %}
+Este sistemas es un Ubuntu
+{% endif %}
+
+Lista de usuarios:
+{% for usuario in lista_usuarios %}
+{{ usuario }}
+{% endfor %}

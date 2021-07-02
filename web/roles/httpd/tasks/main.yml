@@ -1,11 +1,11 @@
-- name: Instalar apache2
-  include: instalar-apache2.yml
+#- name: Instalar apache2
+  #include: instalar-apache2.yml
 #utilizamos la variable del nombre del equipo para saber donde instalaremos
   #when: ansible_nodename == "webserver01" or ansible_distribution == "ubuntu"
   #when: ansible_distribution == "ubuntu"
 
-#- name: Instalar http2
-  #include: instalar-httpd.yml
+- name: Instalar http2
+  include: instalar-httpd.yml
   #when: ansible_distribution =="CentOS"
 
   # en ves de utilizar copy utilizamos template para ir automaticamente
