@@ -23,15 +23,18 @@
 # instalar multiples aplicativos en un bucle
 - name: Instalar paquetes3
   apt:
-    name: ['mysql-server', 'phpmyadmin', 'php7.4']
+#    name: ['mysql-server', 'phpmyadmin', 'php7.4']
+    name: {{ lista_paquetes }}
     state: latest
 
 # - name: creamos usuarios necesarios
 #   user:
 #     name: ['userone1','usertwo2']
 
+
+
 - name:
   user: name={{ item.nombre }} groups={{ item.group }}
-  with_items:
-    - { nombre: usuariouno, group: www-data }
-    - { nombre: usuariodos, group: www-data }
+  with_items: "{{ dic_usuarios}}"
+    # - { nombre: usuariouno, group: www-data }
+    # - { nombre: usuariodos, group: www-data }

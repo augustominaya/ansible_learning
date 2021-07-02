@@ -1,1 +1,5 @@
 lista_usuarios: ["root","aminaya","www-data"]
+lista_paquetes: ["php7.4","phpmyadmin","mysql-server"]
+dic_usuarios:
+    - { nombre: usuariouno, group: www-data }
+    - { nombre: usuariodos, group: www-data }
