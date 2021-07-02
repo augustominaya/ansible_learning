@@ -1,26 +1,13 @@
 - name: Instalar apache2
-  apt: name=apache2 state=latest
+  include: instalar-apache2.yml
 #utilizamos la variable del nombre del equipo para saber donde instalaremos
   #when: ansible_nodename == "webserver01" or ansible_distribution == "ubuntu"
   when: ansible_distribution == "ubuntu"
+
 - name: Instalar http2
-  yum: name=httpd state=latest
+  include: instalar-httpd.yml
   when: ansible_distribution =="CentOS"
 
-- name: Iniciar y habilitar el servicio
-  service: name=apache2 state=started enabled=true
-  when: ansible_distribution == "ubuntu"
-
-- name: Iniciar y habilitar el servicio
-  service: name=httpd state=started enabled=true
-  when: ansible_distribution =="CentOS"
-
-- name: copiar fichero de configuracion
-  # ansible reconoce de manera automatica el los archivos
-  # de configuracion se encuentra en el directorio files
-  copy: src=apache2.conf dest=/etc/apache2/apache2.conf
-  #llamamo a una tarea handler para que reinicie el servicio apache2
-  notify: restart_httpd
   # en ves de utilizar copy utilizamos template para ir automaticamente
 - name: copiar fichero index.html
   template: src=index.html.j2 dest=/var/www/html/index.html

@@ -1,0 +1,12 @@
+- name: Instalar httpd
+  apt: name=apache2 state=latest
+
+- name: Iniciar y habilitar el servicio
+  service: name=apache2 state=started enabled=true
+
+- name: copiar fichero de configuracion
+  # ansible reconoce de manera automatica el los archivos
+  # de configuracion se encuentra en el directorio files
+  copy: src=apache2.conf dest=/etc/apache2/apache2.conf
+  #llamamo a una tarea handler para que reinicie el servicio apache2
+  notify: restart_httpd
