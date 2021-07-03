@@ -1,0 +1,6 @@
+- name: Trabajar con modulo set fact
+  hosts: webserver02
+  become: true
+  tasks:
+    - set_fact: nombre="{{ansible_hostname|upper}}"
+    - debug: var=nombre
