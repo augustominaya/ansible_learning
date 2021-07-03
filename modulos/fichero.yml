@@ -4,10 +4,23 @@
   tasks:
     - name: creating file with specific contend
       copy: content="this is a example v2" dest="/tmp/prueba" backup=yes
-    - name: Propiedades de un fichero
+    - name: file properties
       file: path="/tmp/prueba" backup=yes mode="777" owner="aminaya" group="aminaya"
-    - name: capture the content in a variable
-      command: "ls -lthr /tmp/prueba"
-      register: output
-    - name: visualize the content creating before
-      debug: var=output
+    - name: delete file prueba
+      file: path="/tmp/prueba" state=absent backup=yes
+    # - name: capture the content in a variable
+    #   command: "ls -lthr /tmp/prueba"
+    #   register: output
+    # - name: visualize the content creating before
+    #   debug: var=output
+    - name: verify directory exists
+      file:
+        path: "/var/log/journal"
+        state: directory
+        owner: root
+        group: systemd-journal
+        mode: 2755
+      notify: reiniciar_journald
+  handlers:
+    - name: reiniciar_journald
+      service: name=systemd-journald state=restarted
