@@ -12,4 +12,6 @@
     - name: agregamos clave apt
       apt_key:
         url: "https://ftp-master.debian.org/keys/archive-key-6.0.asc"
-        state: present 
+        state: present
+    - name: Instalar ntpdate
+      package: name=ntpdate state=latest
