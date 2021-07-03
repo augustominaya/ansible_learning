@@ -1,0 +1,11 @@
+- name: Ejecutamos un comando y usamos failed_when
+  hosts: localhost
+  tasks:
+    - name: obtener interfaces de red
+      command: ip a
+      register: salida
+      failed_when: "'eth2' not in salida.stdout"
+      #forzamos a que no muestre la tarea como cambiada.
+      #esto se debe a que la informacion de la tarjeta de red.
+      #siempre va cambiando por los byte consumidos
+      changed_when: false
