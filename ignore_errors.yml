@@ -1,0 +1,17 @@
+- name: playbook para la clase de register
+  hosts: localhost
+  tasks:
+    - name: Ejecutar comando uptime
+      command: cat /etc/hosts
+      register: salida
+      ignore_errors: True
+
+#devolvemos la salida siempre y cuando no falle
+    - name: Visualiar variable
+      debug: var=salida
+      when: salida is not failed
+
+#devolvemos la salida siempre y cuando falle
+    - name: Visualiar variable
+      debug: var=salida
+      when: salida is failed
