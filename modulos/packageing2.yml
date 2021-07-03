@@ -1,17 +1,29 @@
 - name: Trabajar con modulo packing 2
-  hosts: webserver02
+  hosts: webserver03
   become: True
   tasks:
 
-    - name: Actualizar lista de paquetes
-      apt: update_cache=yes
-    - name: Actualizar paquetes
-      apt: upgrade=dist
-    - name: Instalar nginx
-      apt: name=nginx state=latest
-    - name: agregamos clave apt
-      apt_key:
-        url: "https://ftp-master.debian.org/keys/archive-key-6.0.asc"
-        state: present
+    # - name: Actualizar lista de paquetes
+    #   apt: update_cache=yes
+    # - name: Actualizar paquetes
+    #   apt: upgrade=dist
+    # - name: Instalar nginx
+    #   apt: name=nginx state=latest
+    # - name: agregamos clave apt
+    #   apt_key:
+    #     url: "https://ftp-master.debian.org/keys/archive-key-6.0.asc"
+    #     state: present
     - name: Instalar ntpdate
       package: name=ntpdate state=latest
+    - name: Install httpd
+      yum: name=httpd state=latest
+    - name: Actualizar lista de paquetes
+      yum: name='*' state=latest
+    - name: Instalar herramientas de desarrollo
+      yum: name="@Development Tools" state=latest
+    - name: Activar EPEL
+      yum_repository:
+        name: epel
+        desription: EPEL YUM repo
+        state: present
+        baseurl: https://download.fedoraproject.org/pub/epel/$releasever/$basearch/
