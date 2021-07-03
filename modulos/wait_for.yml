@@ -2,5 +2,7 @@
   hosts: webserver02
   become: true
   tasks:
-    - set_fact: nombre="{{ansible_hostname|upper}}"
-    - debug: var=nombre
+    - name: Esperamos hasta que el fichero exista
+      wait_for: path=/tmp/exista delay=2
+    - name: Esperamos hasta que el fichero no exista
+      wait_for: path=/tmp/exista state=absent
