@@ -11,6 +11,18 @@
 # en ves de utilizar copy utilizamos template para ir automaticamente
 - name: copiar fichero index.html
   template: src=index.html.j2 dest=/var/www/html/index.html
+  register: copiado
+
+- name: Mostrar contenido
+  command: cat /var/www/html/index.html
+  register: salida
+  #when: copiado|changed
+#  when: 'false' in copiado.changed
+
+#view in console
+- debug: var=salida.stdout
+  #when: copiado|changed
+#  when: 'false' in copiado.stdout
 
 # vieja version
 # - name: Instalar paquetes2

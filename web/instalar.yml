@@ -1,7 +1,7 @@
 - name: instalar y configurar apache 2
   #hosts: webserver01:webserver02:webserver03
   #utilizamos el webserver01 -02 para probar bucle he instalar diversos items
-  hosts: webserver01,webserver02
+  hosts: webserver01
   remote_user: aminaya
   become: true
   roles:

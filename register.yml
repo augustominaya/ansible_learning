@@ -2,7 +2,8 @@
   hosts: localhost
   tasks:
     - name: Ejecutar comando uptime
-      command: uptime
-      register: salida_uptime
+      command: cat /etc/hosts
+      register: salida
     - name: Visualiar variable
-      debug: var=salida_uptime
+#      debug: var=salida_uptime
+      debug: var=salida.stdout_lines
