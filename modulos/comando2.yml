@@ -1,9 +1,12 @@
 - name: Trabajar con modulo utiles
-  hosts: webserver03
+  hosts: localhost
   become: True
   tasks:
 
     - script: scripts/uptime.sh
+    - shell: uptime >> uptime.log
+      args:
+        chdir: /tmp
     # - name: install pexpec
     #   yum: name=pexpect state=latest
     # - command: uname -a removes=/tmp/noejecutar
