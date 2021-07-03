@@ -9,3 +9,6 @@
     - name: validate if /etc/ is a directory
       debug: msg="es un directorio"
       when: output.stat.isdir
+
+    - name: Copiar configuracion de red
+      fetch: src=/etc/network/interfaces dest=/tmp/backup/interfaces flat=yes
