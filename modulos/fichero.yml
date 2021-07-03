@@ -4,8 +4,10 @@
   tasks:
     - name: creating file with specific contend
       copy: content="this is a example v2" dest="/tmp/prueba" backup=yes
+    - name: Propiedades de un fichero
+      file: path="/tmp/prueba" backup=yes mode="777" owner="aminaya" group="aminaya"
     - name: capture the content in a variable
-      command: "ls -lthr /tmp/"
+      command: "ls -lthr /tmp/prueba"
       register: output
     - name: visualize the content creating before
       debug: var=output
