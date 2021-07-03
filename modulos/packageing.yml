@@ -1,12 +1,17 @@
 - name: Trabajar con modulo packing
-  hosts: webserver03
+  hosts: localhost
   become: True
   tasks:
 
-    - name: Instalar gcc
-      yum: name=gcc state=latest
-    - name: Instalar cpanm
-      yum: name=perl-App-cpanminus state=latest
-    - name: Instalar DBI
-      cpanm: name=DBI
-      #state=present
+    # - name: Instalar gcc
+    #   yum: name=gcc state=latest
+    # - name: Instalar cpanm
+    #   yum: name=perl-App-cpanminus state=latest
+    # - name: Instalar DBI
+    #   cpanm: name=DBI
+
+    # - easy_install:
+    #     name: pip
+    #     state: latest
+    - name: install requests module
+      pip: name=requests state=latest
