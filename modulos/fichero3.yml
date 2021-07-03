@@ -1,0 +1,16 @@
+- name: example files module and openssl
+  hosts: webserver02
+  become: True
+  tasks:
+    - name: using stat module
+      stat: path="/etc/"
+      register: output
+
+    - name: validate if /etc/ is a directory
+      debug: msg="es un directorio"
+      when: output.stat.isdir
+
+    # - name: SELINUX disable
+    #   lineinfile: path=/etc/selinux/config regexp="^SELINUX=" line="SELINUX=disabled"
+    - name: remove group fron sudoers
+      lineinfile: path=/etc/sudoers state=absent regexp="^%wheel"
