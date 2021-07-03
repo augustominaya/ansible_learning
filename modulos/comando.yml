@@ -1,0 +1,11 @@
+- name: Trabajar con modulo utiles
+  hosts: webserver03
+  become: True
+  tasks:
+    - name: install pexpec
+      yum: name=pexpect state=latest
+    - command: uname -a removes=/tmp/noejecutar
+    - expect:
+        command: passwd aminaya
+        responses:
+          (?i)password: "acmc0885"
