@@ -1,0 +1,11 @@
+- name: example files module and openssl
+  hosts: webserver02
+  become: True
+  tasks:
+    - name: using stat module
+      stat: path="/etc/"
+      register: output
+
+    - name: validate if /etc/ is a directory
+      debug: msg="es un directorio"
+      when: output.stat.isdir

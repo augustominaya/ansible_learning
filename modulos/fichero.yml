@@ -8,11 +8,11 @@
       file: path="/tmp/prueba" backup=yes mode="777" owner="aminaya" group="aminaya"
     - name: delete file prueba
       file: path="/tmp/prueba" state=absent backup=yes
-    # - name: capture the content in a variable
-    #   command: "ls -lthr /tmp/prueba"
-    #   register: output
-    # - name: visualize the content creating before
-    #   debug: var=output
+    - name: using stat module
+      stat: path="/etc/services"
+      register: output
+    - name: visualize the content creating before
+      debug: var=output
     - name: verify directory exists
       file:
         path: "/var/log/journal"
