@@ -1,0 +1,12 @@
+- name: Trabajar con modulo packing
+  hosts: webserver03
+  become: True
+  tasks:
+
+    - name: Instalar gcc
+      yum: name=gcc state=latest
+    - name: Instalar cpanm
+      yum: name=perl-App-cpanminus state=latest
+    - name: Instalar DBI
+      cpanm: name=DBI
+      #state=present
