@@ -1,0 +1,53 @@
+- name: Trabajar con modulo de notificacion
+  hosts: localhost
+  connection: localhost
+  vars:
+    - notificar: "hipchar"
+  tasks:
+    - hipchat:
+        api: https://api.hipchat.com/v2/
+        token: "3aiLH3ncDtQtZpLNMarJEyJGkLlnpMlvnYtQwLuh"
+        room: Oferte
+        msg: "Tarea finalizada {{ ansible_fqdn }}"
+      when: notificar == "hipchar"
+
+    - mail:
+        subject: "Tarea finalizada"
+        body: "Tarea finalizada {{ ansible_fqdn }}"
+      delegate_to: localhost
+      when: notificar == "mail"
+
+    - pip: name=pushbullet.py
+      when: notificar == "pushbullet"
+
+    - pushbullet:
+        api_key: "o.lmwmHJLeIdKKG8jkXNLizCMzhzfURoFg"
+        device: "iphone"
+        title: "Notificacion desde {{ ansible_fqdn }}"
+      when: notificar == "pushbullet"
+
+    - pushover:
+        msg: "Notificacion {{ ansible_fqdn }}"
+        app_token: "configurar_token"
+        user_key: "configurar_token_usuario"
+      when: notificar == "pushover"
+
+    - name: Enviar notificacion a Rocket hipchat
+      rocketchat:
+        token: "configurar_token"
+        dominio: midominio.com:8080
+        channel: "#micanal"
+        msg: '{{ Inventory_hostname}} completed'
+        protocol: http
+      delegate_to: localhost
+      when: notificar=="rocketchat"
+
+    - name: Enviar notificacion a Slack
+      slack:
+        token: "configurar_token"
+        channel: "#ofort"
+        msg: '{{ Inventory_hostname }} completed'
+      delegate_to: localhost
+      when: notificar == "slack"
+
+      
