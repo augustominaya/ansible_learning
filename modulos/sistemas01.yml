@@ -1,0 +1,20 @@
+- name: Trabajar con modulo de sistemas
+  hosts: webserver02
+  become: true
+  tasks:
+    # - name:
+    #   alternatives:
+    #     name: java
+    #     path: usr/lib/jvm/java-9-openjdk-amd64/java
+    - name: agregamos la clave de ansible al usuario root
+      authorized_key:
+        user: root
+        key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDeF//En4+Z0ffSSmyjnnXat2XM+Xd5ri3fL1YOhiC2eIP9gCnC1Yj1XhWjaw9wGqLhevGBsCU0L/r6iTEBfx4/zTClq7wVqI6d4ytiZz1a+X741U1iANJOZY5XaTl1W5YiY17G5zTQh6OVE0cmuQkkYStsfjYjsPhBS22uiGWMijDuRVqKQpGv0r4KhIyBbMoIX46U7ITT5sa4k9Z3adtNKcRD4ajSSG8Q+YsRyH8RjiZlZMOB4/6qR+ZEwK2ESO5oKC30bH/57w4BMRx6IqaqtmNUtCCVnP9ZSzN5r0fMhRl1V0GO1eB8FbImGfQ0iqo1v72Z6afH3kmeAH1k1zAxUfpMa8WOYAjaj/FNRc6482ShekvZBL6uQISts6CDLU3wH5eYgRTCg3UH3cs9xAutJqiEQtuAcQXuaNe1cA2Gm5VYJ+B1Yqe+yrXPxqWtvYPdrbklGjWPUJVHQEnONa0m8grVJkebiQJ3bMIW7CB2f0xdz8OmsTGJDUsVmM4SW5U= aminaya@fedora"
+    - name: crear programacion copia de seguridad
+      cron:
+        name: "crear backup"
+        hour: 2
+        minute: 0
+        job: "/root/scripts/backup.sh"
+        cron_file: crear_backup
+        user: root
