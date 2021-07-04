@@ -1,0 +1,13 @@
+- name: Trabajar con modulo de base de datos
+  hosts: webserver02
+  become: true
+  tasks:
+     # isntalamos mysql server
+     - apt: name=mysql-server state=latest
+     # instalamos el prerequisito python3-mysqldb
+     - apt: name=python3-mysqldb state=latest
+     #creamos un esquema nuevo
+     - mysql_db: name=oforte state=present
+     #hacemos copia de seguridad de toda la base de datos
+     - mysql_db: name=all state=dump target=/tmp/{{ ansible_hostname }}.sql
+     - mysql_user: name=oforte password=oforte1234 state=present priv="oforte.*:ALL"
