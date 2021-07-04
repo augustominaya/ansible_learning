@@ -1,0 +1,9 @@
+- name: Trabajar con modulo de base de datos
+  hosts: webserver02
+  become: true
+  tasks:
+  #pre requisito-> sudo apt install python3-psycopg2
+     - postgresql_db: name=oforte state=present encoding=UTF-8
+       become_user: postgres
+     - postgresql_user: name=oforte state=present password=oforte1234
+       become_user: postgres
